@@ -6,6 +6,10 @@ Este repositorio contiene el código fuente de los componentes utilizados en nue
 
 Los ficheros disponibles son:
 
+* config.ini --> Fichero de configuración para la conectividad
+
+* memoria --> Carpeta con la documentación del proyecto
+
 * smart --> Paquete del proyecto
 
   * conexion --> Paquete para gestionar conexiones
@@ -21,7 +25,5 @@ Los ficheros disponibles son:
     * piscina.py --> Clase para gestionar un simulador de una piscina
     
     * nadador.py --> Clase para gestionar la simulación de un nadador en una piscina
-
-* config.ini --> Fichero de configuración para la conectividad
 
 * SMART_Gestión_Piscina.ipynb --> Notebook para la gestión de ejemplo de una piscina
