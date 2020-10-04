@@ -10,6 +10,8 @@ Los ficheros disponibles son:
 
 * memoria --> Carpeta con la documentación del proyecto
 
+* requirements.txt --> Fichero con los paquetes necesarios para una correcta ejecución.
+
 * smart --> Paquete del proyecto
 
   * conexion --> Paquete para gestionar conexiones
