@@ -12,6 +12,7 @@ import sys
 import os
 
 class EnvioOffline():
+    """Esta clase permite el envío de CSVs desde el centro directamente a un bucket S3 de históricos."""
 
     def __init__(self):
 
@@ -47,6 +48,7 @@ class EnvioOffline():
             logging.exception(f"Error creando carpeta de ficheros procesados: {e.strerror}", exc_info=True)
 
     def _read_config(self):
+        """Lectura de los parámetros del fichero de configuración"""
 
         # Compruebo primero si el fichero existe
 
@@ -76,6 +78,11 @@ class EnvioOffline():
         self._S3_KEY  = config_object["OFFLINE"]["key"]
 
     def upload_all(self):
+        """
+            Subir todos los CSVs que haya en el path especificado en el fichero de configuración
+
+            Devolverá True si no hay ficheros a enviar o si todos los ficheros se enviaron y movieron correctamente. False en caso contrario.
+        """
 
         hay_error = False
 
@@ -112,6 +119,15 @@ class EnvioOffline():
         return not hay_error
 
     def upload_file(self, file, file_name):
+        """
+            Esta clase permite subier un fichero al bucket S3. Parámetros
+
+                - file: Fichero a enviar con el path completo
+                - file_name: Nombre del fichero en el bucket destino
+
+            Devolverá True si el fichero se envió correctamente y False en caso contrario
+        """
+
         """Upload a file to an S3 bucket
 
         :param file: Fichero a enviar con path completo
