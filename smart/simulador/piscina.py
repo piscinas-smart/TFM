@@ -38,7 +38,7 @@ class Piscina():
         self._vacia = True
         self._abierta = True
         self._REFRESCO = refresco
-        self.ancho_piscina = int(ancho_piscina)
+        self.ancho_piscina = ancho_piscina
         self.largo_piscina = int(largo_piscina)
         self.ancho_calle = ancho_calle
         self.calles = int(ancho_piscina / ancho_calle)
@@ -124,6 +124,9 @@ class Piscina():
     ############################
 
     def _checkSwimmers(self):
+        """
+            Comprueba el estado de los nadadores de la piscina, para determinar si han terminado de nadar y si la piscina se ha quedado vacía
+        """
 
         for i, calle in enumerate(self._nadadores):
 
@@ -156,6 +159,15 @@ class Piscina():
                     #print(self.__str__())
 
     def _printThread(self, outQueue, log, conn):
+        """
+            Función utilizada por el Thread para gestionar el envío de información, bien online o al CSV
+
+            Parámetros:
+
+                - outQueue: Cola de donde obtener los mensajes
+                - log: Nombre del fichero log
+                - conn: Conexión con Kinesis
+        """
 
         # Mientras la piscina esté abierta se registrarán los mensajes, bien online o en CSV
 
@@ -188,9 +200,12 @@ class Piscina():
                     return ""
 
     def _getTagID(self):
+        """Genera un código TagID"""
+
         return hashlib.md5(str(uuid.uuid1()).encode()).hexdigest()[:12]
 
     def _getEmptyLane(self):
+        """Obtiene una calle libre"""
 
         try:
             return random.sample([x for x in self._nadadores if self._nadadores[x]["Nadador"] == None], 1)[0]
@@ -198,6 +213,7 @@ class Piscina():
             return None
 
     def _getFreeTag(self):
+        """Obtiene tag libre"""
 
         # Mezclamos los elementos de la lista
 
@@ -215,6 +231,13 @@ class Piscina():
     ############################
 
     def nuevoNadador(self, tiempo=30*60):
+        """
+            Incorpora un nuevo nadador a la piscina
+
+            Parámetros:
+
+                - tiempo: Segundos que el nadador está en la piscina. Por defecto 30 minutos
+        """
 
         # Buscamos un hueco para el nuevo nadador
 
@@ -229,6 +252,11 @@ class Piscina():
 
         posX = (self.largo_piscina / 2) * (1 if random.randint(0, 1) == 0 else -1)
         posY = self.ancho_calle * self._nadadores[lane]["PosicionInicial"]
+
+        # Para que el centro del ancho de la piscina sea el 0 y haya valores negativos
+
+        posY = posY - (self.ancho_piscina / 2)
+
         posZ = 0.20000000000000004
 
         self._nadadores[lane]["Nadador"] = nadador.Nadador(self._getFreeTag(),
