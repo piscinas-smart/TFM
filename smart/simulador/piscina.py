@@ -259,7 +259,11 @@ class Piscina():
 
         posZ = 0.20000000000000004
 
-        self._nadadores[lane]["Nadador"] = nadador.Nadador(self._getFreeTag(),
+        # Obtenemos el TagID entre los que se generaron automáticamente
+
+        TagID = self._getFreeTag()
+
+        self._nadadores[lane]["Nadador"] = nadador.Nadador(TagID,
                                                            self._REFRESCO,
                                                            self.largo_piscina,
                                                            posX,
@@ -270,7 +274,7 @@ class Piscina():
                                                            self._output_mode
                                                            )
 
-        print(f"Entra un nuevo nadador en la calle {lane} y durante {tiempo} segundos")
+        print(f"Entra un nuevo nadador en la calle {lane} con identificador {TagID} y durante {tiempo} segundos")
 
         self._vacia = False
 
