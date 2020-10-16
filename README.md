@@ -16,11 +16,13 @@ Los ficheros disponibles son:
 
   * conexion --> Paquete para gestionar conexiones
   
-    * connectivity.py --> Fichero para realizar la comunicación con Kinesis
+    * connectivity.py --> Clase para realizar la comunicación con Kinesis
     
-    * httpserver.py --> Servidor para realizar enviar registros a Kinesis utilizando llamadas directas POST.
+    * enviooffline.py --> Clase para realizar el envío offline de ficheros CSV a la nube
     
-    * serverqueue.py --> Servidor para realizar enviar registros a Kinesis utilizando llamadas POST mediante una cola.
+    * httpserver.py --> Clase para crear un servidor para realizar enviar registros a Kinesis utilizando llamadas directas POST.
+    
+    * serverqueue.py --> Clase para crear un servidor para realizar enviar registros a Kinesis utilizando llamadas POST mediante una cola.
 
   * simulador --> Paquete para simular la piscina
   
