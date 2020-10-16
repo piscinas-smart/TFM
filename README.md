@@ -8,7 +8,11 @@ Los ficheros disponibles son:
 
 * config.ini --> Fichero de configuración para la conectividad
 
-* memoria --> Carpeta con la documentación del proyecto
+* lambda --> Código fuente de las lambdas utilizadas en las APIs
+
+ * info_by_date.py --> Información sobre un día concreto en la piscina
+ 
+ * info_by_tag_dates.py --> Información para un tag concreto en un rango de fechas
 
 * requirements.txt --> Fichero con los paquetes necesarios para una correcta ejecución.
 
