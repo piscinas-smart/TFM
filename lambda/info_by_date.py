@@ -46,7 +46,7 @@ def get_info_by_date(fecha):
             "metros": int(metros),
             "medidas": int(medidas),
             "estilos": estilos,
-            "tags": registros
+            "tags": list(set(registros))
         }
 
 
